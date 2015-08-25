@@ -12,8 +12,8 @@
 		<!-- A configuration only needed when compiling the widget set. Should 
 			not be deployed to the server -->
 		<conf name="widgetset-compile" />
-		<!-- A configuration used in compilation of server side classes only.
-			Should be deployed to the server -->
+		<!-- A configuration used in compilation of server side classes only. Should 
+			be deployed to the server -->
 		<conf name="nodeploy" />
 	</configurations>
 	<dependencies defaultconf="default" defaultconfmapping="default->default">
@@ -27,10 +27,12 @@
 		<dependency org="com.vaadin" name="vaadin-push" rev="&vaadin.version;" />
 
 		<!-- Servlet 3.0 API -->
-		<dependency org="javax.servlet" name="javax.servlet-api" rev="3.0.1" conf="nodeploy->default" />
+		<dependency org="javax.servlet" name="javax.servlet-api"
+			rev="3.0.1" conf="nodeploy->default" />
 
 		<!-- TestBench 4 -->
-		<dependency org="com.vaadin" name="vaadin-testbench-api" rev="latest.release" conf="nodeploy -> default" />
+		<dependency org="com.vaadin" name="vaadin-testbench-api"
+			rev="latest.release" conf="nodeploy -> default" />
 
 		<!-- Precompiled DefaultWidgetSet -->
 		<dependency org="com.vaadin" name="vaadin-client-compiled"
@@ -38,10 +40,16 @@
 
 		<!-- Vaadin client side, needed for widget set compilation -->
 		<dependency org="com.vaadin" name="vaadin-client" rev="&vaadin.version;"
-			 conf="widgetset-compile->default" />
+			conf="widgetset-compile->default" />
 
 		<!-- Compiler for custom widget sets. Should not be deployed -->
 		<dependency org="com.vaadin" name="vaadin-client-compiler"
 			rev="&vaadin.version;" conf="widgetset-compile->default" />
+		<dependency org="com.vaadin.addon" name="jpacontainer" rev="3.2.0" />
+     <dependency org="com.h2database" name="h2" rev="1.4.188" />
+     <dependency org="org.eclipse.persistence" name="javax.persistence" rev="2.0.0" />
+     <dependency org="org.eclipse.persistence" name="eclipselink" rev="2.2.0" />
+     
 	</dependencies>
+
 </ivy-module>

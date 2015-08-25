@@ -1,4 +1,4 @@
-package com.example.haccp;
+package it.lsoft.haccp;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -15,7 +15,7 @@ import com.vaadin.ui.VerticalLayout;
 @SuppressWarnings("serial")
 @Theme("haccp")
 public class HaccpUI extends UI {
-
+	public static final String PERSISTENCE_UNIT = "haccp";
 	@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = HaccpUI.class)
 	public static class Servlet extends VaadinServlet {
@@ -23,17 +23,8 @@ public class HaccpUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		final VerticalLayout layout = new VerticalLayout();
-		layout.setMargin(true);
-		setContent(layout);
+		setContent(new AppRootView());
 
-		Button button = new Button("Click Me");
-		button.addClickListener(new Button.ClickListener() {
-			public void buttonClick(ClickEvent event) {
-				layout.addComponent(new Label("Thank you for clicking"));
-			}
-		});
-		layout.addComponent(button);
 	}
 
 }
