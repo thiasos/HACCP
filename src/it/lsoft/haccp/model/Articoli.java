@@ -1,15 +1,24 @@
 package it.lsoft.haccp.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Articoli {
+public class Articoli implements Serializable {
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	private String ean;
-
-	private Integer idFornitore;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="IDFORNITORE")
+	private Fornitori fornitore;
 	private String descrizione;
 	public String getEan() {
 		return ean;
@@ -17,21 +26,25 @@ public class Articoli {
 	public void setEan(String ean) {
 		this.ean = ean;
 	}
-	public Integer getIdFornitore() {
-		return idFornitore;
-	}
-	public void setIdFornitore(Integer idFornitore) {
-		this.idFornitore = idFornitore;
-	}
+	 
 	public String getDescrizione() {
 		return descrizione;
 	}
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	@Override
-	public String toString() {
-		return "Articoli [ean=" + ean + ", idFornitore=" + idFornitore + ", descrizione=" + descrizione + "]";
+	 
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Fornitori getFornitore() {
+		return fornitore;
+	}
+	public void setFornitore(Fornitori fornitore) {
+		this.fornitore = fornitore;
 	}
 
 }

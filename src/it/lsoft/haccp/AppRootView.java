@@ -13,21 +13,22 @@ public class AppRootView extends AppRootDesign implements View {
 
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
+				appContainer.removeAllComponents();
 				switch (selectedItem.getText()) {
 				case "Fornitori":
-					appContainer.removeAllComponents();
 					appContainer.addComponent(new FornitoriView());
 					break;
-
+				case "Registri":
+					appContainer.addComponent(new RegistriView());
+					break;
 				default:
-					appContainer.removeAllComponents();
-					appContainer.addComponent(new Label("aaa"));
+					appContainer.addComponent(new ArticoliView());
 					break;
 				}
 
 			}
 		};
-		 
+
 		for (MenuItem menuItem : menu.getItems()) {
 			menuItem.setCommand(command);
 		}
@@ -36,6 +37,6 @@ public class AppRootView extends AppRootDesign implements View {
 	@Override
 	public void enter(ViewChangeEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

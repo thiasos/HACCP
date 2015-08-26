@@ -1,19 +1,28 @@
 package it.lsoft.haccp.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-public class ArticoliMagazzino {
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
+public class ArticoliMagazzino implements Serializable{
 
 	@Id
 	private Integer id;
-	private Integer idDocCarico;
-	private Integer idDocScarico;
-	private String eanArticolo;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private RegistroCarico registroCarico;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private RegistroScarico registroScarico;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Articoli articolo;
 	private String lotto;
+	@Temporal(TemporalType.DATE)
 	private Date dataScadenza;
 	private Boolean conformita;
 	private Boolean validita;
@@ -28,30 +37,7 @@ public class ArticoliMagazzino {
 		this.id = id;
 	}
 
-	public Integer getIdDocCarico() {
-		return idDocCarico;
-	}
-
-	public void setIdDocCarico(Integer idDocCarico) {
-		this.idDocCarico = idDocCarico;
-	}
-
-	public Integer getIdDocScarico() {
-		return idDocScarico;
-	}
-
-	public void setIdDocScarico(Integer idDocScarico) {
-		this.idDocScarico = idDocScarico;
-	}
-
-	public String getEanArticolo() {
-		return eanArticolo;
-	}
-
-	public void setEanArticolo(String eanArticolo) {
-		this.eanArticolo = eanArticolo;
-	}
-
+	 
 	public String getLotto() {
 		return lotto;
 	}
@@ -98,6 +84,29 @@ public class ArticoliMagazzino {
 
 	public void setTrasporto(Boolean trasporto) {
 		this.trasporto = trasporto;
+	}
+	public RegistroCarico getRegistroCarico() {
+		return registroCarico;
+	}
+
+	public void setRegistroCarico(RegistroCarico registroCarico) {
+		this.registroCarico = registroCarico;
+	}
+
+	public RegistroScarico getRegistroScarico() {
+		return registroScarico;
+	}
+
+	public void setRegistroScarico(RegistroScarico registroScarico) {
+		this.registroScarico = registroScarico;
+	}
+
+	public Articoli getArticolo() {
+		return articolo;
+	}
+
+	public void setArticolo(Articoli articolo) {
+		this.articolo = articolo;
 	}
 
 }
