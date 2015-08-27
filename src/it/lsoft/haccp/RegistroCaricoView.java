@@ -2,6 +2,7 @@ package it.lsoft.haccp;
 
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
+import com.vaadin.data.util.filter.Compare;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.navigator.View;
@@ -30,6 +31,8 @@ public class RegistroCaricoView extends RegistroCaricoDesign implements View {
 	private static final long serialVersionUID = -6853807270909456615L;
 
 	public RegistroCaricoView(final RegistroCarico carico) {
+		magazzinoDS.removeAllContainerFilters();
+		magazzinoDS.addContainerFilter(new Compare.Equal("registroCarico", carico));
 		tableMagazzino.setContainerDataSource(magazzinoDS);
 		tableMagazzino.setVisibleColumns(new Object[] {"id","articolo","dataScadenza","lotto", "conformita","trasporto","validita","temperatura"});
 		idArticolo.setContainerDataSource(articoliDS);
@@ -57,7 +60,9 @@ public class RegistroCaricoView extends RegistroCaricoDesign implements View {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				ArticoliMagazzino mm  = new ArticoliMagazzino();
-				mm.setArticolo((Articoli) idArticolo.getValue());
+				Articoli a = new Articoli();
+				a.setId((Integer) idArticolo.getValue());
+				mm.setArticolo(a);
 				mm.setConformita(conformita.getValue());
 				mm.setDataScadenza(dataScadenza.getValue());
 				mm.setLotto(lotto.getValue());
@@ -65,6 +70,7 @@ public class RegistroCaricoView extends RegistroCaricoDesign implements View {
 				mm.setTemperatura(Double.parseDouble(temperatura.getValue()));
 				mm.setTrasporto(trasporto.getValue());
 				mm.setValidita(validita.getValue());
+				magazzinoDS.addEntity(mm);
 			}
 		});
 	}

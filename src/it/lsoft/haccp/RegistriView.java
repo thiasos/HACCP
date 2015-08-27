@@ -2,7 +2,6 @@ package it.lsoft.haccp;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.EventListener;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -14,6 +13,8 @@ import com.vaadin.data.util.filter.Between;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Calendar;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.components.calendar.CalendarComponentEvents.DateClickEvent;
 import com.vaadin.ui.components.calendar.CalendarComponentEvents.DateClickHandler;
 import com.vaadin.ui.components.calendar.CalendarComponentEvents.EventClick;
@@ -79,8 +80,19 @@ public class RegistriView extends RegistriDesign implements View {
 			calendar.setHandler(new EventClickHandler() {
 				public void eventClick(EventClick event) {
 					RegistroEvent e = (RegistroEvent) event.getCalendarEvent();
-					RegistroCaricoView component = new RegistroCaricoView((RegistroCarico) e.getItem());
+					Component component;
 					removeComponent(0, 1);
+					switch (e.getItem().getTipoRegistro()) {
+					case C:
+						component = new RegistroCaricoView((RegistroCarico) e.getItem());
+						break;
+					case S:
+						component = new RegistroScaricoView((RegistroScarico) e.getItem());
+						break;
+					default:
+						component = new Label(e.getItem().getTipoRegistro().toString());
+						break;
+					}
 					addComponent(component, 0, 1);
 					setRowExpandRatio(1, 10f);
 				}

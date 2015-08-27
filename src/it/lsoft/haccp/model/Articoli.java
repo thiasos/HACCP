@@ -46,5 +46,8 @@ public class Articoli implements Serializable {
 	public void setFornitore(Fornitori fornitore) {
 		this.fornitore = fornitore;
 	}
-
+	@Override
+	public String toString() {
+		return String.format("%s",getDescrizione());
+	}
 }
