@@ -15,9 +15,10 @@
 	                        <property name="javax.persistence.jdbc.user" value="sa" />
 	                        <property name="javax.persistence.jdbc.password" value="sa" />
 	                        <property name="eclipselink.logging.level" value="FINE" />
-	                        <property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
+	                        <property name="eclipselink.ddl-generation" value="create-tables" />
+	                        <property name="eclipselink.application-location" value="e:/sql" />
 	                        <property name="eclipselink.ddl-generation.output-mode"
-	                                value="database" />
+	                                value="both" />
 	                </properties>
 	        </persistence-unit>
 	

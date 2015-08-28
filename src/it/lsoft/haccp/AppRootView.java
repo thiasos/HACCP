@@ -21,8 +21,14 @@ public class AppRootView extends AppRootDesign implements View {
 				case "Registri":
 					appContainer.addComponent(new RegistriView());
 					break;
-				default:
+				case "Articoli":
 					appContainer.addComponent(new ArticoliView());
+					break;
+				case "Carte Fedeltà":
+					appContainer.addComponent(new CarteFedeltaView());
+					break;
+				default:
+					appContainer.addComponent(new Label(selectedItem.getText()));
 					break;
 				}
 

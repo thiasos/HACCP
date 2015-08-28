@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;PAPER_WIDTH&quot;:0,&quot;PAPER_HEIGHT&quot;:0,&quot;PAPER_SCROLL_LEFT&quot;:0,&quot;PAPER_SCROLL_TOP&quot;:0,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;haccp&quot;}">
+ </head> 
+ <body> 
+  <v-vertical-layout size-full="true"> 
+   <v-horizontal-layout  width="100%"> 
+    <v-horizontal-layout :bottom=""> 
+     <v-text-field input-prompt="Numero Carta" _id="cardNumber"></v-text-field> 
+     <v-text-field input-prompt="Punti" _id="point"></v-text-field> 
+     <v-button plain-text="" _id="btnAddPoint">
+       Accredita Punti 
+     </v-button> 
+     <v-button plain-text="" _id="btnGift">
+       Emetti Omaggio 
+     </v-button> 
+    </v-horizontal-layout> 
+    <v-horizontal-layout :bottom="" :right=""> 
+     <v-text-field size-auto="true" caption="Email" plain-text="" _id="email"></v-text-field> 
+     <v-text-field size-auto="true" caption="Saldo Punti"  plain-text="" _id="saldo"></v-text-field> 
+    </v-horizontal-layout> 
+   </v-horizontal-layout> 
+   <v-table size-full="true" _id="table" :expand=""></v-table> 
+  </v-vertical-layout>  
+ </body>
+</html>
