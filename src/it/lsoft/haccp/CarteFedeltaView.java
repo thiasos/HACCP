@@ -14,8 +14,17 @@ import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.BrowserWindowOpener;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.JavaScript;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Table;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 
 import it.lsoft.haccp.model.CarteFedelta;
 import it.lsoft.haccp.model.MovimentiFedelta;
@@ -26,14 +35,12 @@ public class CarteFedeltaView extends CarteFedeltaDesign implements View {
 	 * 
 	 */
 	private static final long serialVersionUID = -5928556157312268110L;
-	private static JPAContainer<CarteFedelta> carteDS;
-	private static JPAContainer<MovimentiFedelta> movimentiDS;
+	private final JPAContainer<CarteFedelta> carteDS = JPAContainerFactory.make(CarteFedelta.class,
+			HaccpUI.PERSISTENCE_UNIT);
+	private final JPAContainer<MovimentiFedelta> movimentiDS = JPAContainerFactory.make(MovimentiFedelta.class,
+			HaccpUI.PERSISTENCE_UNIT);
 	private final FieldGroup fg = new FieldGroup();
-
-	static {
-		carteDS = JPAContainerFactory.make(CarteFedelta.class, HaccpUI.PERSISTENCE_UNIT);
-		movimentiDS = JPAContainerFactory.make(MovimentiFedelta.class, HaccpUI.PERSISTENCE_UNIT);
-	}
+	private final BrowserWindowOpener opener = new BrowserWindowOpener(PrintUI.class);
 
 	public CarteFedeltaView() {
 		super();
@@ -65,14 +72,20 @@ public class CarteFedeltaView extends CarteFedeltaDesign implements View {
 				carteDS.applyFilters();
 				movimentiDS.removeAllContainerFilters();
 				if (carteDS.getItemIds().isEmpty()) {
-					email.setReadOnly(true);
-					email.setPropertyDataSource(new ObjectProperty<String>("Carta non associata"));
+					// email.setReadOnly(true);
+					// email.setPropertyDataSource(new
+					// ObjectProperty<String>("Carta non associata"));
 					movimentiDS.addContainerFilter(new IsNull("carta"));
+					opener.setUriFragment(null);
+					btnPrint.setEnabled(false);
 				} else {
-					email.setReadOnly(false);
-					email.setPropertyDataSource(carteDS.getItem(carteDS.getIdByIndex(0)).getItemProperty("email"));
+					// email.setReadOnly(false);
+					// email.setPropertyDataSource(carteDS.getItem(carteDS.getIdByIndex(0)).getItemProperty("email"));
 					movimentiDS.addContainerFilter(
 							new Equal("carta", carteDS.getItem(carteDS.getIdByIndex(0)).getEntity()));
+					opener.setUriFragment( carteDS.getItem(carteDS.getIdByIndex(0)).getEntity().getId().toString());
+					btnPrint.setEnabled(true);
+
 				}
 				movimentiDS.applyFilters();
 			}
@@ -86,7 +99,7 @@ public class CarteFedeltaView extends CarteFedeltaDesign implements View {
 					entity.setBarCode(cardNumber.getValue());
 					Object addEntity = carteDS.addEntity(entity);
 					carteDS.applyFilters();
-					email.setValue(carteDS.getItem(carteDS.getIdByIndex(0)).getEntity().getEmail());
+					// email.setValue(carteDS.getItem(carteDS.getIdByIndex(0)).getEntity().getEmail());
 
 				}
 				Integer value = (Integer) point.getPropertyDataSource().getValue();
@@ -124,6 +137,51 @@ public class CarteFedeltaView extends CarteFedeltaDesign implements View {
 			}
 		});
 
+		opener.setFeatures("height=200,width=400,resizable");
+		opener.extend(btnPrint);
+
+	}
+
+	public static class PrintUI extends UI {
+
+		private final JPAContainer<MovimentiFedelta> movimentiDS = JPAContainerFactory.make(MovimentiFedelta.class,
+				HaccpUI.PERSISTENCE_UNIT);
+
+		@Override
+		protected void init(VaadinRequest request) {
+			// Have some content to print
+
+			// 
+			
+			
+			CarteFedelta value = new CarteFedelta();
+			value.setId(Integer.parseInt(getPage().getUriFragment()));
+			movimentiDS.addContainerFilter(new Equal("carta", value));
+			movimentiDS.applyFilters();
+			VerticalLayout content = new VerticalLayout();
+			content.setWidth("10cm");
+			Label label1 = new Label("Numero Carta");
+			Label label2 = new Label(movimentiDS.getItem(movimentiDS.getIdByIndex(0)).getEntity().getCarta().getBarCode());
+			HorizontalLayout c1 = new HorizontalLayout(label1, label2);
+			c1.setSizeFull();
+			c1.setComponentAlignment(label1, Alignment.BOTTOM_LEFT);
+			c1.setComponentAlignment(label2, Alignment.BOTTOM_RIGHT);
+			content.addComponent(c1);
+			for (Object itemId : movimentiDS.getItemIds()) {
+				content.addComponent(new Label(movimentiDS.getItem(itemId).getItemProperty("data")));
+				Label desc = new Label(movimentiDS.getItem(itemId).getItemProperty("descrizione"));
+				Label punti = new Label(movimentiDS.getItem(itemId).getItemProperty("punti"));
+				HorizontalLayout c = new HorizontalLayout(desc, punti);
+				c.setSizeFull();
+				c.setComponentAlignment(desc, Alignment.BOTTOM_LEFT);
+				c.setComponentAlignment(punti, Alignment.BOTTOM_RIGHT);
+				content.addComponent(c);
+			}
+			setContent(content);
+
+			// Print automatically when the window opens
+			JavaScript.getCurrent().execute("setTimeout(function() {" + "  print(); self.close();}, 0);");
+		}
 	}
 
 	@Override

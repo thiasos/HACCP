@@ -24,8 +24,8 @@ public class CarteFedeltaDesign extends VerticalLayout {
 	protected TextField point;
 	protected Button btnAddPoint;
 	protected Button btnGift;
-	protected TextField email;
 	protected TextField saldo;
+	protected Button btnPrint;
 	protected Table table;
 
 	public CarteFedeltaDesign() {

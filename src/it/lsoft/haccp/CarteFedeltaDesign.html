@@ -5,7 +5,7 @@
  </head> 
  <body> 
   <v-vertical-layout size-full="true"> 
-   <v-horizontal-layout  width="100%"> 
+   <v-horizontal-layout width-full="true"> 
     <v-horizontal-layout :bottom=""> 
      <v-text-field input-prompt="Numero Carta" _id="cardNumber"></v-text-field> 
      <v-text-field input-prompt="Punti" _id="point"></v-text-field> 
@@ -17,8 +17,11 @@
      </v-button> 
     </v-horizontal-layout> 
     <v-horizontal-layout :bottom="" :right=""> 
-     <v-text-field size-auto="true" caption="Email" plain-text="" _id="email"></v-text-field> 
-     <v-text-field size-auto="true" caption="Saldo Punti"  plain-text="" _id="saldo"></v-text-field> 
+    <v-label>Saldo Punti</v-label>
+     <v-text-field  _id="saldo"></v-text-field> 
+     <v-button plain-text="" _id="btnPrint">
+       Stampa 
+     </v-button> 
     </v-horizontal-layout> 
    </v-horizontal-layout> 
    <v-table size-full="true" _id="table" :expand=""></v-table> 
