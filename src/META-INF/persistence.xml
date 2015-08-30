@@ -11,20 +11,12 @@
 	                        <property name="eclipselink.jdbc.platform"
 	                                value="org.eclipse.persistence.platform.database.H2Platform" />
 	                        <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-<<<<<<< HEAD
-	                        <property name="javax.persistence.jdbc.url" value="jdbc:h2:/d:/devel/haccp" />
-=======
 	                        <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://172.24.0.103:9092/~/haccp" />
->>>>>>> branch 'develop' of https://github.com/thiasos/HACCP.git
 	                        <property name="javax.persistence.jdbc.user" value="sa" />
 	                        <property name="javax.persistence.jdbc.password" value="sa" />
 	                        <property name="eclipselink.logging.level" value="FINE" />
 	                        <property name="eclipselink.ddl-generation" value="create-tables" />
-<<<<<<< HEAD
 	                        <property name="eclipselink.application-location" value="d:/devel/sql/haccp" />
-=======
-	                        <property name="eclipselink.application-location" value="e:/sql" />
->>>>>>> branch 'develop' of https://github.com/thiasos/HACCP.git
 	                        <property name="eclipselink.ddl-generation.output-mode"
 	                                value="both" />
 	                </properties>

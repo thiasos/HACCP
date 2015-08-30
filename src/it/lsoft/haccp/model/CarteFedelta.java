@@ -18,14 +18,8 @@ public class CarteFedelta implements Serializable{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 
-	private String barCode;
-	public String getBarCode() {
-		return barCode;
-	}
-
-	public void setBarCode(String barCode) {
-		this.barCode = barCode;
-	}
+	private String barcode;
+	 
 
 	public String getPin() {
 		return pin;
@@ -53,6 +47,14 @@ public class CarteFedelta implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getBarcode() {
+		return barcode;
+	}
+
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
 	}
 
 	 
