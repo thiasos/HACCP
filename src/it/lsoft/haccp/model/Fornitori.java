@@ -1,11 +1,16 @@
 package it.lsoft.haccp.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Fornitori {
+public class Fornitori implements Serializable{
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 
 	private String nome;
@@ -48,5 +53,5 @@ public class Fornitori {
 	public String toString() {
 		return "Fornitori [id=" + id + ", nome=" + nome + ", indirizzo=" + indirizzo + ", telefono=" + telefono + "]";
 	}
- 
+
 }

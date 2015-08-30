@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;PAPER_WIDTH&quot;:0,&quot;PAPER_HEIGHT&quot;:0,&quot;PAPER_SCROLL_LEFT&quot;:0,&quot;PAPER_SCROLL_TOP&quot;:0,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;haccp&quot;}">
+ </head> 
+ <body> 
+  <v-vertical-layout size-full="true"> 
+   <v-horizontal-layout> 
+    <v-combo-box caption="Articolo" item-caption-mode="id" _id="idArticolo" :bottom="" :center=""></v-combo-box> 
+    <v-text-field caption="EAN" _id="ean" :bottom="" :center=""></v-text-field> 
+    <v-date-field caption="Scadenza" _id="dataScadenza" :bottom="" :center=""></v-date-field> 
+    <v-text-field caption="Lotto" _id="lotto" :bottom="" :center=""></v-text-field> 
+    <v-text-field caption="Conformit&agrave; Temperatura" _id="temperatura" :bottom="" :center=""></v-text-field> 
+    <v-check-box caption="Conformit&agrave; Prodotto" _id="conformita" :bottom="" :center=""></v-check-box> 
+    <v-check-box caption="Conformit&agrave; Trasporto" _id="trasporto" :bottom="" :center=""></v-check-box> 
+    <v-check-box caption="Validit&agrave; Prodotto" _id="validita" :bottom="" :center=""></v-check-box> 
+    <v-button plain-text="" _id="btnAdd" :bottom="" :center="">
+      Aggiungi 
+    </v-button> 
+   </v-horizontal-layout> 
+   <v-table size-full="true" :expand="" _id="tableMagazzino"></v-table> 
+  </v-vertical-layout>  
+ </body>
+</html>
