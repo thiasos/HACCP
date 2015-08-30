@@ -26,7 +26,10 @@ public class CarteFedeltaDesign extends VerticalLayout {
 	protected Button btnGift;
 	protected TextField saldo;
 	protected Button btnPrint;
+<<<<<<< HEAD
 	protected Button btnPrintCard;
+=======
+>>>>>>> branch 'develop' of https://github.com/thiasos/HACCP.git
 	protected Table table;
 
 	public CarteFedeltaDesign() {

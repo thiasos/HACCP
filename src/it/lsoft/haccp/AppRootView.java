@@ -22,9 +22,14 @@ public class AppRootView extends AppRootDesign implements View {
 				appContainer.removeAllComponents();
 				switch (selectedItem.getText()) {
 				case "Fornitori":
+<<<<<<< HEAD
 					appContainer.addComponent(fornitoriView);
+=======
+					appContainer.addComponent(new FornitoriView());
+>>>>>>> branch 'develop' of https://github.com/thiasos/HACCP.git
 					break;
 				case "Registri":
+<<<<<<< HEAD
 					appContainer.addComponent(registriView);
 					break;
 				case "Articoli":
@@ -32,6 +37,15 @@ public class AppRootView extends AppRootDesign implements View {
 					break;
 				case "Carte Fedeltà":
 					appContainer.addComponent(fidelityCardView);
+=======
+					appContainer.addComponent(new RegistriView());
+					break;
+				case "Articoli":
+					appContainer.addComponent(new ArticoliView());
+					break;
+				case "Carte Fedeltà":
+					appContainer.addComponent(new CarteFedeltaView());
+>>>>>>> branch 'develop' of https://github.com/thiasos/HACCP.git
 					break;
 				default:
 					appContainer.addComponent(new Label(selectedItem.getText()));

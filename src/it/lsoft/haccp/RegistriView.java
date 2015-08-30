@@ -46,8 +46,16 @@ public class RegistriView extends RegistriDesign implements View {
 		}
 	}
 
+<<<<<<< HEAD
 	private final JPAContainer<Registri> documentiDS = JPAContainerFactory.make(Registri.class,
 			HaccpUI.PERSISTENCE_UNIT);
+=======
+	private static JPAContainer<Registri> documentiDS;
+
+	static {
+		documentiDS = JPAContainerFactory.make(Registri.class, HaccpUI.PERSISTENCE_UNIT);
+	}
+>>>>>>> branch 'develop' of https://github.com/thiasos/HACCP.git
 
 	public RegistriView() {
 		super();

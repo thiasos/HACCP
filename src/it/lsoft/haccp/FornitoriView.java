@@ -16,9 +16,18 @@ import com.vaadin.ui.Button.ClickEvent;
 import it.lsoft.haccp.model.Fornitori;
 
 public class FornitoriView extends FornitoriDesign implements View {
+<<<<<<< HEAD
 	private final JPAContainer<Fornitori> fornitoriDS = JPAContainerFactory.make(Fornitori.class,
 			HaccpUI.PERSISTENCE_UNIT);
 	private final FieldGroup fg = new FieldGroup();
+=======
+	private static JPAContainer<Fornitori> fornitoriDS;
+	private final FieldGroup fg = new FieldGroup();
+
+	static {
+		fornitoriDS = JPAContainerFactory.make(Fornitori.class, HaccpUI.PERSISTENCE_UNIT);
+	}
+>>>>>>> branch 'develop' of https://github.com/thiasos/HACCP.git
 
 	public FornitoriView() {
 		super();
@@ -44,12 +53,20 @@ public class FornitoriView extends FornitoriDesign implements View {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
+<<<<<<< HEAD
 				fornitoriDS.removeItem(fg.getItemDataSource().getItemProperty("id").getValue());
 				rebind(new BeanItem<>(new Fornitori()));
 				editButton.setEnabled(false);
 				deleteButton.setEnabled(false);
 			}
 		});
+=======
+				fornitoriDS.removeItem(	fg.getItemDataSource().getItemProperty("id").getValue());
+				rebind(new BeanItem<>(new Fornitori()));
+				editButton.setEnabled(false);
+				deleteButton.setEnabled(false);
+			}});
+>>>>>>> branch 'develop' of https://github.com/thiasos/HACCP.git
 		editButton.addClickListener(new Button.ClickListener() {
 
 			@Override
@@ -81,7 +98,11 @@ public class FornitoriView extends FornitoriDesign implements View {
 				if (fg.getItemDataSource().getItemProperty("id").getValue() == null) {
 					Object oId = fornitoriDS.addEntity(((BeanItem<Fornitori>) fg.getItemDataSource()).getBean());
 					tableFornitori.select(oId);
+<<<<<<< HEAD
 				}
+=======
+				}  
+>>>>>>> branch 'develop' of https://github.com/thiasos/HACCP.git
 				form.setEnabled(false);
 			}
 		});
