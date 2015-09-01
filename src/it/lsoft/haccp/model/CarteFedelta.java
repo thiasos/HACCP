@@ -1,11 +1,13 @@
 package it.lsoft.haccp.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class CarteFedelta implements Serializable{
@@ -19,7 +21,8 @@ public class CarteFedelta implements Serializable{
 	private Integer id;
 
 	private String barcode;
-	 
+	@OneToMany(mappedBy="carta")
+	private List<MovimentiFedelta> movimenti;
 
 	public String getPin() {
 		return pin;
@@ -55,6 +58,14 @@ public class CarteFedelta implements Serializable{
 
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
+	}
+
+	public List<MovimentiFedelta> getMovimenti() {
+		return movimenti;
+	}
+
+	public void setMovimenti(List<MovimentiFedelta> movimenti) {
+		this.movimenti = movimenti;
 	}
 
 	 

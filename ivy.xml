@@ -64,6 +64,7 @@
 			rev="1.5-beta1" />
 
 		<dependency org="com.lowagie" name="itext" rev="2.1.7" />
+		<dependency org="com.google.code.gson" name="gson" rev="2.3.1" />
 
 
 	</dependencies>
