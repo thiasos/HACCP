@@ -30,7 +30,7 @@ public class VCaricoStampa implements Serializable {
 	private java.lang.Boolean articolimagazzinoConformita;
 	private java.sql.Date articolimagazzinoDatascadenza;
 	private String articolimagazzinoLotto;
-	private String articolimagazzinoTemperatura;
+	private Double articolimagazzinoTemperatura;
 	private java.lang.Boolean articolimagazzinoTrasporto;
 	private java.lang.Boolean articolimagazzinoValidita;
 	public Integer getId() {
@@ -69,10 +69,10 @@ public class VCaricoStampa implements Serializable {
 	public void setArticolimagazzinoLotto(String articolimagazzinoLotto) {
 		this.articolimagazzinoLotto = articolimagazzinoLotto;
 	}
-	public String getArticolimagazzinoTemperatura() {
+	public Double getArticolimagazzinoTemperatura() {
 		return articolimagazzinoTemperatura;
 	}
-	public void setArticolimagazzinoTemperatura(String articolimagazzinoTemperatura) {
+	public void setArticolimagazzinoTemperatura(Double articolimagazzinoTemperatura) {
 		this.articolimagazzinoTemperatura = articolimagazzinoTemperatura;
 	}
 	public java.lang.Boolean getArticolimagazzinoTrasporto() {
