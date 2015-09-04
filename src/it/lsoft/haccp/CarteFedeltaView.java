@@ -230,8 +230,6 @@ public class CarteFedeltaView extends CarteFedeltaDesign implements View {
 				entity.setBarcode(prefix + leftPad);
 				item.getItemProperty("barcode").setValue(prefix + leftPad);
 			}
-			final List<InputStream> list = new ArrayList<InputStream>();
-			list.add(getClass().getClassLoader().getResourceAsStream("Tessere.pdf"));
 			final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(
 					getClass().getClassLoader().getResourceAsStream("Tessere.jasper"), new HashMap<>(),

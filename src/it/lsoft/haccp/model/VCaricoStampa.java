@@ -10,10 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name="v_carico")
 public class VCaricoStampa implements Serializable {
 	/**
 	 * 
@@ -22,6 +24,7 @@ public class VCaricoStampa implements Serializable {
 	@Id
 	@Column(name = "ID")
 	private Integer id;
+	private Integer cnt;
 	private String fornitoriNome;
 	private String articoliDescrizione;
 	private java.lang.Boolean articolimagazzinoConformita;
@@ -89,6 +92,12 @@ public class VCaricoStampa implements Serializable {
 	}
 	public void setRegistriData(java.sql.Date registriData) {
 		this.registriData = registriData;
+	}
+	public Integer getCnt() {
+		return cnt;
+	}
+	public void setCnt(Integer cnt) {
+		this.cnt = cnt;
 	}
 	private java.sql.Date registriData;
 

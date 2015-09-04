@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CaricoLS" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="baa49111-9a66-4695-bca1-94c14496275f">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CaricoLS" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="baa49111-9a66-4695-bca1-94c14496275f">
 	<property name="ireport.zoom" value="1.6105100000000008"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -14,29 +14,13 @@
 		</conditionalStyle>
 	</style>
 	<queryString language="SQL">
-		<![CDATA[SELECT
-     fornitori.`NOME` AS fornitoriNome,
-     articoli.`DESCRIZIONE` AS articoliDescrizione,
-     articolimagazzino.`CONFORMITA` AS articolimagazzinoConformita,
-     articolimagazzino.`DATASCADENZA` AS articolimagazzinoDatascadenza,
-     articolimagazzino.`LOTTO` AS articolimagazzinoLotto,
-     articolimagazzino.`TEMPERATURA` AS articolimagazzinoTemperatura,
-     articolimagazzino.`TRASPORTO` AS articolimagazzinoTrasporto,
-     articolimagazzino.`VALIDITA` AS articolimagazzinoValidita,
-     registri.`DATA` AS registriData
-FROM
-     `fornitori` fornitori INNER JOIN `articoli` articoli ON fornitori.`ID` = articoli.`IDFORNITORE`
-     INNER JOIN `articolimagazzino` articolimagazzino ON articoli.`ID` = articolimagazzino.`ARTICOLO_ID`
-     INNER JOIN `registri` registri ON articolimagazzino.`REGISTROSCARICO_ID` = registri.`ID` order by registri.DATA]]>
+		<![CDATA[SELECT * FROM haccp.v_scarico]]>
 	</queryString>
 	<field name="articoliDescrizione" class="java.lang.String"/>
 	<field name="articolimagazzinoDatascadenza" class="java.sql.Date"/>
 	<field name="articolimagazzinoLotto" class="java.lang.String"/>
-	<field name="articolimagazzinoConformita" class="java.lang.Boolean"/>
-	<field name="articolimagazzinoValidita" class="java.lang.Boolean"/>
-	<field name="articolimagazzinoTrasporto" class="java.lang.Boolean"/>
-	<field name="articolimagazzinoTemperatura" class="java.lang.Double"/>
 	<field name="registriData" class="java.sql.Date"/>
+	<field name="cnt" class="java.lang.Integer"/>
 	<group name="registriData">
 		<groupExpression><![CDATA[$F{registriData}]]></groupExpression>
 		<groupHeader>
@@ -105,18 +89,22 @@ FROM
 				<text><![CDATA[Articolo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="310" y="0" width="75" height="18" forecolor="#000000" uuid="99cf96b1-7f19-4957-aefa-672098b6ba8e"/>
+				<reportElement style="Column header" x="384" y="0" width="75" height="18" forecolor="#000000" uuid="99cf96b1-7f19-4957-aefa-672098b6ba8e"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Scadenza]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="385" y="0" width="96" height="18" forecolor="#000000" uuid="d6e32630-b4a3-429b-884f-48254d53b256"/>
+				<reportElement style="Column header" x="459" y="0" width="96" height="18" forecolor="#000000" uuid="d6e32630-b4a3-429b-884f-48254d53b256"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Lotto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="74" height="18" uuid="806aa2a4-96b1-4a72-8815-9d86ba9e9571"/>
+				<text><![CDATA[Q.tà]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -132,18 +120,25 @@ FROM
 					<textFieldExpression><![CDATA[$F{articoliDescrizione}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
-					<reportElement style="Detail" positionType="Float" x="310" y="0" width="75" height="18" uuid="eecd7c4b-fec1-4053-857b-f69bdb160876"/>
+					<reportElement style="Detail" positionType="Float" x="384" y="0" width="75" height="18" uuid="eecd7c4b-fec1-4053-857b-f69bdb160876"/>
 					<textElement>
 						<font size="14" isUnderline="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{articolimagazzinoDatascadenza}==null?"N.D.":$F{articolimagazzinoDatascadenza}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="385" y="0" width="96" height="18" uuid="a06dfa21-d52a-4b61-9fdf-28109758b291"/>
+					<reportElement style="Detail" positionType="Float" x="459" y="0" width="96" height="18" uuid="a06dfa21-d52a-4b61-9fdf-28109758b291"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{articolimagazzinoLotto}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="310" y="0" width="74" height="18" uuid="78f14683-e41f-4cc9-8dc9-3f3a62fb4d8c"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cnt}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
