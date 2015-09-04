@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CaricoLS" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="baa49111-9a66-4695-bca1-94c14496275f">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM haccp.v_carico]]>
+	</queryString>
+	<field name="articoliDescrizione" class="java.lang.String"/>
+	<field name="articolimagazzinoDatascadenza" class="java.sql.Date"/>
+	<field name="articolimagazzinoLotto" class="java.lang.String"/>
+	<field name="articolimagazzinoConformita" class="java.lang.Boolean"/>
+	<field name="articolimagazzinoValidita" class="java.lang.Boolean"/>
+	<field name="articolimagazzinoTrasporto" class="java.lang.Boolean"/>
+	<field name="articolimagazzinoTemperatura" class="java.lang.Double"/>
+	<field name="registriData" class="java.sql.Date"/>
+	<field name="cnt" class="java.lang.Integer"/>
+	<group name="registriData">
+		<groupExpression><![CDATA[$F{registriData}]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="3" width="697" height="24" forecolor="#B89F7D" backcolor="#000000" uuid="a9c8ab1b-9ab0-42c5-9958-abee3b07b109"/>
+					<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+						<reportElement style="SubTitle" x="131" y="0" width="566" height="24" forecolor="#FFFFFF" uuid="8e88b439-8213-476b-b316-f123d75d29b5"/>
+						<textElement>
+							<font isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{registriData}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="" style="SubTitle" x="2" y="0" width="129" height="24" forecolor="#FFFFFF" uuid="8ba8faab-3b32-45d4-a0c3-a150d72caf50"/>
+						<text><![CDATA[Data Ricezione]]></text>
+					</staticText>
+				</frame>
+				<rectangle>
+					<reportElement x="692" y="3" width="110" height="24" backcolor="#666666" uuid="0d0550c7-c9a4-46a4-9e88-b1b7251169d0"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="692" y="3" width="110" height="24" forecolor="#FFFFFF" uuid="5a64ca7a-b6a8-4da5-b8d7-fb6c0f3a3fd0"/>
+					<textElement>
+						<font size="15"/>
+					</textElement>
+					<text><![CDATA[Firma]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="66" backcolor="#000000" uuid="ac78c767-f0df-498f-9b3b-9d89962d268b"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="481" height="66" uuid="f12fc514-3832-47c9-bb75-f2178ed7ef6d"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="46" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Capogna e Alfonso Snc]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="481" y="37" width="316" height="29" uuid="74f3d036-e5d1-4773-9275-2642030b400f"/>
+					<textElement textAlignment="Right">
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Ricezione Materie Prime]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="70" width="802" height="32" forecolor="#000000" backcolor="#CC0000" uuid="efe579c0-63c3-4ec1-93c4-2be6dfd7188a"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="653" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="75dec18b-b5be-4a63-b3cb-f978a8981505"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="131" height="18" forecolor="#000000" uuid="a8acc0b3-31d7-4a42-8f69-3087285924a8"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Articolo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="168" y="0" width="58" height="18" forecolor="#000000" uuid="99cf96b1-7f19-4957-aefa-672098b6ba8e"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Scadenza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="243" y="0" width="96" height="18" forecolor="#000000" uuid="d6e32630-b4a3-429b-884f-48254d53b256"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lotto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="339" y="0" width="74" height="18" forecolor="#000000" uuid="6c2db926-1165-4044-bf06-6992e579af54"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Conformità]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="413" y="0" width="68" height="18" forecolor="#000000" uuid="094004ae-6c92-4b6c-9d71-a20c4cce87f7"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Validità]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="481" y="0" width="98" height="18" forecolor="#000000" uuid="05dbf887-352c-43e6-bfa1-520153f3403c"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Conf. Trasporto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="579" y="0" width="113" height="18" forecolor="#000000" uuid="8b08e08e-7aff-474a-a2d2-7203f2854c8b"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Conf. Temperatura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="131" y="1" width="37" height="17" forecolor="#000000" uuid="dd90085e-c615-4cc8-9a1c-a377d3083a41"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Q.tà]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="fa8ed272-7279-49af-892a-8883c7548c74"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="131" height="18" uuid="df655a5b-338e-4d2a-957d-8f8ba216e1e1"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{articoliDescrizione}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+					<reportElement style="Detail" positionType="Float" x="168" y="0" width="75" height="18" uuid="eecd7c4b-fec1-4053-857b-f69bdb160876"/>
+					<textElement>
+						<font size="14" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{articolimagazzinoDatascadenza}==null?"N.D.":$F{articolimagazzinoDatascadenza}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="243" y="0" width="96" height="18" uuid="a06dfa21-d52a-4b61-9fdf-28109758b291"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{articolimagazzinoLotto}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement style="Detail" positionType="Float" x="339" y="0" width="74" height="18" uuid="6dcc2b33-2a09-493f-ad12-ba2c4c61cc9d"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{articolimagazzinoConformita}==null?"N.A.":$F{articolimagazzinoConformita}.equals(Boolean.TRUE) ? "SI" : "NO"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="413" y="0" width="68" height="18" uuid="1d119cf1-3659-4c80-b74b-87dc6b25561d"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{articolimagazzinoValidita}==null?"N.A.":$F{articolimagazzinoValidita}.equals(Boolean.TRUE) ? "SI" : "NO"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="">
+					<reportElement style="Detail" positionType="Float" x="481" y="0" width="98" height="18" uuid="3017eedb-761f-4b70-96bc-637577c12677"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{articolimagazzinoTrasporto}==null?"N.A.":$F{articolimagazzinoTrasporto}.equals(Boolean.TRUE) ? "SI" : "NO"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement style="Detail" positionType="Float" x="579" y="0" width="113" height="18" uuid="fe29e2c8-8da3-4c70-8ad9-85290aa7995a"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{articolimagazzinoTemperatura}==null?"N.A":$F{articolimagazzinoTemperatura}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="131" y="0" width="37" height="18" uuid="1f086786-8798-47d9-8c74-2d22ec1bb865"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cnt}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="2f3ac70e-2400-4c7c-86ef-af9e2bba2b3a"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#000000" uuid="1db022b7-5475-43d2-9778-408cab9bbdf7"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF" uuid="3b3405e1-c057-456f-97a3-1d345389985f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF" uuid="6a364ca2-722c-4e4b-9f90-3b49dcd47f39"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF" uuid="3b6d4480-2c0e-4e10-a0fd-944e8f350bb4"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
