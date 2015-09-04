@@ -12,14 +12,9 @@ import it.lsoft.haccp.model.RegistroCarico;
 
 public class RegistroCaricoView extends RegistroCaricoDesign implements View {
 
-	private static JPAContainer<Articoli> articoliDS;
-	private static JPAContainer<ArticoliMagazzino> magazzinoDS;
-
-	static {
-		articoliDS = JPAContainerFactory.make(Articoli.class, HaccpUI.PERSISTENCE_UNIT);
-		magazzinoDS = JPAContainerFactory.make(ArticoliMagazzino.class, HaccpUI.PERSISTENCE_UNIT);
-
-	}
+	JPAContainer<Articoli> articoliDS = JPAContainerFactory.make(Articoli.class, HaccpUI.PERSISTENCE_UNIT);
+	JPAContainer<ArticoliMagazzino> magazzinoDS = JPAContainerFactory.make(ArticoliMagazzino.class,
+			HaccpUI.PERSISTENCE_UNIT);
 
 	/**
 	 * 
@@ -30,13 +25,14 @@ public class RegistroCaricoView extends RegistroCaricoDesign implements View {
 		magazzinoDS.removeAllContainerFilters();
 		magazzinoDS.addContainerFilter(new Compare.Equal("registroCarico", carico));
 		tableMagazzino.setContainerDataSource(magazzinoDS);
-		tableMagazzino.setVisibleColumns(new Object[] {"id","articolo","dataScadenza","lotto", "conformita","trasporto","validita","temperatura"});
+		tableMagazzino.setVisibleColumns(new Object[] { "id", "articolo", "dataScadenza", "lotto", "conformita",
+				"trasporto", "validita", "temperatura" });
 		idArticolo.setContainerDataSource(articoliDS);
 		idArticolo.setItemCaptionPropertyId("descrizione");
 		ean.addTextChangeListener(event -> {
 			articoliDS.removeAllContainerFilters();
 			articoliDS.applyFilters();
-			if (org.apache.commons.lang3.StringUtils.isNotBlank( event.getText())) {
+			if (org.apache.commons.lang3.StringUtils.isNotBlank(event.getText())) {
 				articoliDS.addContainerFilter("ean", event.getText(), false, false);
 				articoliDS.applyFilters();
 				if (articoliDS.getItemIds().isEmpty()) {
@@ -48,7 +44,7 @@ public class RegistroCaricoView extends RegistroCaricoDesign implements View {
 			}
 		});
 		btnAdd.addClickListener(event -> {
-			ArticoliMagazzino mm  = new ArticoliMagazzino();
+			ArticoliMagazzino mm = new ArticoliMagazzino();
 			Articoli a = new Articoli();
 			a.setId((Integer) idArticolo.getValue());
 			mm.setArticolo(a);
