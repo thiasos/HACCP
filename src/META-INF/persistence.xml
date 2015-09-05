@@ -11,7 +11,7 @@
 	                        <property name="eclipselink.jdbc.platform"
 	                                value="org.eclipse.persistence.platform.database.MySQLPlatform" />
 	                        <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-	                        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/HACCP" />
+	                        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://195.110.141.206/HACCP" />
 	                        <property name="javax.persistence.jdbc.user" value="haccp" />
 	                        <property name="javax.persistence.jdbc.password" value="roberto.2867" />
 	                        <property name="eclipselink.logging.level" value="FINE" />

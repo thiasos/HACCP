@@ -68,7 +68,7 @@ public class RegistriView extends RegistriDesign implements View {
 	private final JPAContainer<Registri> documentiDS = JPAContainerFactory.make(Registri.class,
 			HaccpUI.PERSISTENCE_UNIT);
 
-	public RegistriView() {
+	public RegistriView(UserHandler userHandler) {
 		super();
 		calendar.setHeight("100px");
 		calendar.setWidth("100%");

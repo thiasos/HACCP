@@ -11,12 +11,20 @@
     <v-date-field caption="Scadenza" _id="dataScadenza" :bottom="" :center=""></v-date-field> 
     <v-text-field caption="Lotto" _id="lotto" :bottom="" :center=""></v-text-field> 
     <v-text-field caption="Conformit&agrave; Temperatura" _id="temperatura" :bottom="" :center=""></v-text-field> 
-    <v-check-box caption="Conformit&agrave; Prodotto" _id="conformita" :bottom="" :center=""></v-check-box> 
-    <v-check-box caption="Conformit&agrave; Trasporto" _id="trasporto" :bottom="" :center=""></v-check-box> 
-    <v-check-box caption="Validit&agrave; Prodotto" _id="validita" :bottom="" :center=""></v-check-box> 
-    <v-button plain-text="" _id="btnAdd" :bottom="" :center="">
-      Aggiungi 
-    </v-button> 
+  	<v-vertical-layout > 
+    	<v-check-box caption="Conformit&agrave; Prodotto" _id="conformita" :bottom="" :center=""></v-check-box> 
+    	<v-check-box caption="Conformit&agrave; Trasporto" _id="trasporto" :bottom="" :center=""></v-check-box> 
+    	<v-check-box caption="Validit&agrave; Prodotto" _id="validita" :bottom="" :center=""></v-check-box> 
+    </v-vertical-layout>  
+  	<v-vertical-layout > 
+	    <v-button plain-text="" _id="btnAdd" :bottom="" :center="">
+      	Aggiungi 
+    	</v-button>
+    	<v-button plain-text="" _id="btnPrint" :bottom="" :center="">
+      	Stampa Etichette 
+    	</v-button>
+   	</v-vertical-layout>v-vertical-layout > 
+   	 
    </v-horizontal-layout> 
    <v-table size-full="true" :expand="" _id="tableMagazzino"></v-table> 
   </v-vertical-layout>  

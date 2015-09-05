@@ -28,7 +28,7 @@ public class ArticoliView extends ArticoliDesign implements View {
 	private final JPAContainer<Articoli> articoliDS = JPAContainerFactory.make(Articoli.class,
 			HaccpUI.PERSISTENCE_UNIT);
 
-	public ArticoliView() {
+	public ArticoliView(UserHandler userHandler) {
 		super();
 		form.setEnabled(false);
 		tableArticoli.setSelectable(true);

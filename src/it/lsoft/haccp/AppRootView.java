@@ -6,18 +6,25 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 
-public class AppRootView extends AppRootDesign implements View {
+import it.lsoft.haccp.model.Utenti;
+
+public class AppRootView extends AppRootDesign implements View, UserHandler {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5907646604589089811L;
 	private final CarteFedeltaView fidelityCardView = new CarteFedeltaView();
-	private final FornitoriView fornitoriView = new FornitoriView();
-	private final RegistriView registriView = new RegistriView();
-	private final ArticoliView articoliView = new ArticoliView();
+	private final FornitoriView fornitoriView;
+	private final RegistriView registriView;
+	private final ArticoliView articoliView;
+	private final Utenti currentUser;
 
-	public AppRootView() {
+	public AppRootView(Utenti find) {
 		super();
+		this.currentUser = find;
+		fornitoriView = new FornitoriView(this);
+		registriView = new RegistriView(this);
+		articoliView = new ArticoliView(this);
 		Command command = new Command() {
 
 			/**
@@ -54,5 +61,9 @@ public class AppRootView extends AppRootDesign implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
+	}
+
+	public Utenti getCurrentUser() {
+		return currentUser;
 	}
 }

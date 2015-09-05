@@ -32,6 +32,7 @@ public class RegistroCaricoDesign extends VerticalLayout {
 	protected CheckBox trasporto;
 	protected CheckBox validita;
 	protected Button btnAdd;
+	protected Button btnPrint;
 	protected Table tableMagazzino;
 
 	public RegistroCaricoDesign() {

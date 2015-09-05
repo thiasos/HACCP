@@ -16,7 +16,7 @@ public class FornitoriView extends FornitoriDesign implements View {
 			HaccpUI.PERSISTENCE_UNIT);
 	private final FieldGroup fg = new FieldGroup();
 
-	public FornitoriView() {
+	public FornitoriView(UserHandler userHandler) {
 		super();
 		form.setEnabled(false);
 		tableFornitori.setSelectable(true);
@@ -30,7 +30,6 @@ public class FornitoriView extends FornitoriDesign implements View {
 			rebind(event.getItem());
 			editButton.setEnabled(true);
 			deleteButton.setEnabled(true);
-
 		});
 		deleteButton.addClickListener(event -> {
 			fornitoriDS.removeItem(fg.getItemDataSource().getItemProperty("id").getValue());
@@ -38,7 +37,6 @@ public class FornitoriView extends FornitoriDesign implements View {
 			editButton.setEnabled(false);
 			deleteButton.setEnabled(false);
 		});
- 
 		editButton.addClickListener(event -> form.setEnabled(true));
 		newButton.addClickListener(event -> {
 			rebind(new BeanItem<>(new Fornitori()));

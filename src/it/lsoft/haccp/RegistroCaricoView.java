@@ -43,6 +43,7 @@ public class RegistroCaricoView extends RegistroCaricoDesign implements View {
 				}
 			}
 		});
+		btnPrint.addClickListener(event -> printAll());
 		btnAdd.addClickListener(event -> {
 			ArticoliMagazzino mm = new ArticoliMagazzino();
 			Articoli a = new Articoli();
@@ -57,6 +58,10 @@ public class RegistroCaricoView extends RegistroCaricoDesign implements View {
 			mm.setValidita(validita.getValue());
 			magazzinoDS.addEntity(mm);
 		});
+	}
+
+	private void printAll() {
+		 
 	}
 
 	@Override
