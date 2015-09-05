@@ -3,16 +3,36 @@ package it.lsoft.haccp.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.ColumnResult;
 import javax.persistence.Entity;
+import javax.persistence.EntityResult;
 import javax.persistence.FetchType;
+import javax.persistence.FieldResult;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@SqlResultSetMapping(name = "Etichette", entities = { @EntityResult(entityClass = Etichette.class, fields = {
+		@FieldResult(name = "descrizione", column = "descrizione"),
+		@FieldResult(name = "dataScadenza", column = "dataScadenza"),
+		@FieldResult(name = "dataRegistro", column = "dataRegistro") }) })
+@NamedNativeQuery(name = "Etichette", resultClass = Etichette.class, resultSetMapping = "Etichette", //
+query = "SELECT haccp.articoli.`DESCRIZIONE` as descrizione,"+
+	" haccp.articolimagazzino.`LOTTO` as lotto,"+
+	" haccp.articolimagazzino.`DATASCADENZA` as dataScadenza,"+
+	" haccp.registri.`DATA` as dataRegistro,"+
+	" haccp.articolimagazzino.`ID` as id"+
+" FROM haccp.articoli"+
+	" INNER JOIN haccp.articolimagazzino ON "+
+	" haccp.articolimagazzino.`ARTICOLO_ID` = haccp.articoli.`ID` "+
+	" INNER JOIN haccp.registri ON "+
+	" haccp.registri.`ID` = haccp.articolimagazzino.`REGISTROCARICO_ID` where haccp.articolimagazzino.`REGISTROCARICO_ID`  = :rid")
 public class ArticoliMagazzino implements Serializable {
 
 	@Id

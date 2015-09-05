@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import javax.management.RuntimeErrorException;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 
@@ -132,10 +134,10 @@ public class RegistriView extends RegistriDesign implements View {
 		btnPrintScarico.addClickListener(event -> printScarico(calendar.getStartDate(), calendar.getEndDate()));
 	}
 
-	private static final String MYKEY = "download";
+	static final String MYKEY = "download";
 
 	private void printCarico(Date startDate, Date endDate) {
-		printCaricoDS.sort(new Object[]{"registriData"}, new boolean[] {true});
+		printCaricoDS.sort(new Object[] { "registriData" }, new boolean[] { true });
 		printCaricoDS.removeAllContainerFilters();
 		printCaricoDS.addContainerFilter(new Between("registriData", startDate, endDate));
 		printCaricoDS.applyFilters();
@@ -145,10 +147,15 @@ public class RegistriView extends RegistriDesign implements View {
 		}
 		JRBeanArrayDataSource dataSource = new JRBeanArrayDataSource(arr.toArray(new VCaricoStampa[0]), false);
 		String reportName = "CaricoLS.jasper";
-		printReport(dataSource, reportName);
+		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(reportName);
+		StreamResource resource = printReport(resourceAsStream, dataSource);
+		setResource(MYKEY, resource);
+		ResourceReference rr = ResourceReference.create(resource, this, MYKEY);
+		Page.getCurrent().open(rr.getURL(), "new");
 	}
+
 	private void printScarico(Date startDate, Date endDate) {
-		printScaricoDS.sort(new Object[]{"registriData"}, new boolean[] {true});
+		printScaricoDS.sort(new Object[] { "registriData" }, new boolean[] { true });
 		printScaricoDS.removeAllContainerFilters();
 		printScaricoDS.addContainerFilter(new Between("registriData", startDate, endDate));
 		printScaricoDS.applyFilters();
@@ -158,37 +165,31 @@ public class RegistriView extends RegistriDesign implements View {
 		}
 		JRBeanArrayDataSource dataSource = new JRBeanArrayDataSource(arr.toArray(new VScaricoStampa[0]), false);
 		String reportName = "ScaricoLS.jasper";
-		printReport(dataSource, reportName);
+		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(reportName);
+		StreamResource resource = printReport(resourceAsStream, dataSource);
+		setResource(MYKEY, resource);
+		ResourceReference rr = ResourceReference.create(resource, this, MYKEY);
+		Page.getCurrent().open(rr.getURL(), "new");
 	}
 
-	private void printReport(JRBeanArrayDataSource dataSource, String reportName) {
+	public static StreamResource printReport(InputStream report, JRBeanArrayDataSource dataSource) {
 		try {
 			final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(
-					getClass().getClassLoader().getResourceAsStream(reportName), new HashMap<>(), dataSource);
+			JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(report, new HashMap<>(), dataSource);
 			JasperExportManager.exportReportToPdfStream(jprint, outputStream);
 			outputStream.flush();
 			outputStream.close();
-			// list.add(new ByteArrayInputStream(outputStream.toByteArray()));
 			final ByteArrayOutputStream oStream = new ByteArrayOutputStream();
-
-			// doMerge(list, outputStream);
-
 			StreamResource res = new StreamResource(new StreamResource.StreamSource() {
 
 				public InputStream getStream() {
 					return new ByteArrayInputStream(outputStream.toByteArray());
 				}
 			}, new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".pdf");
-			setResource(MYKEY, res);
-			ResourceReference rr = ResourceReference.create(res, this, MYKEY);
-			Page.getCurrent().open(rr.getURL(), "new");
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return res;
+
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
