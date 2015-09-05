@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-08-29T19:05:03 -->
+<!-- 2015-08-30T12:06:28 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tessere" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="241" columnSpacing="56" leftMargin="28" rightMargin="28" topMargin="28" bottomMargin="28" uuid="34c7cca3-bc4d-4d73-bbc4-d3061d36abdf">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="HACCP"/>
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
@@ -15,13 +15,13 @@
 	<queryString>
 		<![CDATA[select * from  "PUBLIC"."CARTEFEDELTA"]]>
 	</queryString>
-	<field name="BARCODE" class="java.lang.String">
+	<field name="barcode" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="PIN" class="java.lang.String">
+	<field name="pin" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="ID" class="java.lang.Integer"/>
+	<field name="id" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -35,55 +35,56 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="162" splitType="Stretch">
+		<band height="156" splitType="Stretch">
 			<componentElement>
-				<reportElement x="6" y="50" width="224" height="100" uuid="6031f39e-8207-45b8-a81d-01e962e45f4e">
+				<reportElement x="6" y="62" width="224" height="70" uuid="6031f39e-8207-45b8-a81d-01e962e45f4e">
 					<property name="com.jaspersoft.studio.unit.barHeight" value="cm"/>
 				</reportElement>
 				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="3of9" drawText="true" checksumRequired="false" barHeight="85">
-					<jr:codeExpression><![CDATA[$F{BARCODE}]]></jr:codeExpression>
+					<jr:codeExpression><![CDATA[$F{barcode}]]></jr:codeExpression>
 				</jr:barbecue>
 			</componentElement>
-			<rectangle>
-				<reportElement mode="Transparent" x="0" y="0" width="241" height="155" uuid="916bf9b5-d02d-46ae-ac34-b33d0fb29764">
-					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
-				</reportElement>
+			<rectangle radius="15">
+				<reportElement mode="Transparent" x="0" y="0" width="241" height="138" uuid="916bf9b5-d02d-46ae-ac34-b33d0fb29764"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dotted"/>
+				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="90" y="10" width="40" height="10" uuid="5c2cdf55-9af6-4cb8-a20f-e777738e2bc5"/>
+				<reportElement x="100" y="10" width="30" height="20" uuid="5c2cdf55-9af6-4cb8-a20f-e777738e2bc5"/>
 				<textElement>
-					<font fontName="Cherry Swash"/>
+					<font fontName="Monospaced"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="6" y="10" width="80" height="10" uuid="4b7979ac-bba3-47f5-9b77-024a25a35430"/>
+				<reportElement x="6" y="10" width="94" height="20" uuid="4b7979ac-bba3-47f5-9b77-024a25a35430"/>
 				<textElement textAlignment="Right">
-					<font fontName="Cherry Swash" size="10"/>
+					<font fontName="Monospaced" size="10"/>
 				</textElement>
 				<text><![CDATA[Numero Tessera:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="170" y="10" width="60" height="10" uuid="7ea0cb5d-8cc9-4063-b54a-9d8c2401e897"/>
+				<reportElement x="200" y="10" width="30" height="20" uuid="7ea0cb5d-8cc9-4063-b54a-9d8c2401e897"/>
 				<textElement>
-					<font fontName="Cherry Swash"/>
+					<font fontName="Monospaced"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{PIN}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{pin}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="130" y="10" width="36" height="10" uuid="44d6dc99-172b-45a5-9846-f241622e5435"/>
+				<reportElement x="164" y="10" width="36" height="20" uuid="44d6dc99-172b-45a5-9846-f241622e5435"/>
 				<textElement textAlignment="Right">
-					<font fontName="Cherry Swash"/>
+					<font fontName="Monospaced"/>
 				</textElement>
 				<text><![CDATA[PIN:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="6" y="24" width="224" height="20" uuid="d481a31b-f0db-4510-b9e8-bb9b67822beb"/>
+			<staticText>
+				<reportElement x="6" y="30" width="224" height="32" uuid="d481a31b-f0db-4510-b9e8-bb9b67822beb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Cherry Swash" size="16"/>
+					<font fontName="FontLeroyBrown" size="26"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Piadineria Tienti in Pie'"]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[Piadineria Tienti in Pie']]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>

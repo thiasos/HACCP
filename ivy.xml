@@ -14,7 +14,7 @@
 		<conf name="widgetset-compile" />
 		<!-- A configuration used in compilation of server side classes only. Should 
 			be deployed to the server -->
-		<conf name="nodeploy" /> 
+		<conf name="nodeploy" />
 	</configurations>
 	<dependencies defaultconf="default" defaultconfmapping="default->default">
 		<!-- The core server part of Vaadin -->
@@ -46,7 +46,7 @@
 		<dependency org="com.vaadin" name="vaadin-client-compiler"
 			rev="&vaadin.version;" conf="widgetset-compile->default" />
 		<dependency org="com.vaadin.addon" name="jpacontainer" rev="3.2.0" />
-		<dependency org="mysql" name="mysql-connector-java" rev="5.1.6"/>
+		<dependency org="mysql" name="mysql-connector-java" rev="5.1.6" />
 
 		<dependency org="org.eclipse.persistence" name="javax.persistence"
 			rev="2.0.0" />
@@ -66,7 +66,7 @@
 
 		<dependency org="com.lowagie" name="itext" rev="2.1.7" />
 		<dependency org="com.google.code.gson" name="gson" rev="2.3.1" />
-
+		<dependency org="org.vaadin.addons" name="loginform" rev="0.5.2" />
 
 	</dependencies>
 
