@@ -26,7 +26,7 @@ public class RegistroEvent implements CalendarEvent {
 
 	@Override
 	public String getCaption() {
-		return String.format("%s (%s)",  getItem().getTipoRegistro(), getItem().getMovimenti().size());
+		return String.format("%s (%s)", getItem().getTipoRegistro(), getItem().getMovimenti().size());
 	}
 
 	@Override

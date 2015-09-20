@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import javax.management.RuntimeErrorException;
 
@@ -72,13 +73,24 @@ public class RegistriView extends RegistriDesign implements View {
 
 	public RegistriView(UserHandler userHandler) {
 		super();
-		calendar.setHeight("100px");
-		calendar.setWidth("100%");
+		calendar.setHeight("130px");
+		calendar.setWidth("1000px");
+		calendar.setFirstVisibleDayOfWeek(1);
+		calendar.setWeeklyCaptionFormat("dd/MM/yy");
+		calendar.setLastVisibleDayOfWeek(7);
+		calendar.setLocale(Locale.ITALY);
 		documentiDS.sort(new String[] { "data" }, new boolean[] { true });
-		setRows(2);
+		setRows(3);
+		setColumns(2);
 		Button btnPrintCarico = new Button("Stampa R. Carico");
 		Button btnPrintScarico = new Button("Stampa R. Scarico");
-		addComponent(new HorizontalLayout(calendar, new VerticalLayout(btnPrintCarico, btnPrintScarico)), 0, 0);
+		addComponent(calendar, 0, 0, 0, 1);
+		addComponent(btnPrintCarico, 1, 0);
+		addComponent(btnPrintScarico, 1, 1);
+		addComponent(new VerticalLayout(), 0, 2);
+		setRowExpandRatio(0, 0f);
+		setRowExpandRatio(1, 0f);
+		setRowExpandRatio(2, 1f);
 		calendar.setEventProvider((startDate, endDate) -> {
 			documentiDS.removeAllContainerFilters();
 			documentiDS.addContainerFilter(new Between("data", startDate, endDate));
@@ -94,7 +106,7 @@ public class RegistriView extends RegistriDesign implements View {
 		calendar.setHandler((EventClickHandler) event -> {
 			RegistroEvent e = (RegistroEvent) event.getCalendarEvent();
 			Component component;
-			removeComponent(0, 1);
+			removeComponent(0, 2);
 			switch (e.getItem().getTipoRegistro()) {
 			case C:
 				component = new RegistroCaricoView((RegistroCarico) e.getItem());
@@ -106,8 +118,9 @@ public class RegistriView extends RegistriDesign implements View {
 				component = new Label(e.getItem().getTipoRegistro().toString());
 				break;
 			}
-			addComponent(component, 0, 1);
-			setRowExpandRatio(1, 10f);
+			calendar.markAsDirty();
+			addComponent(component, 0, 2, 1, 2);
+
 		});
 		calendar.setHandler((DateClickHandler) event -> {
 			ArrayList<Registri> arrayList = new ArrayList<>();
@@ -164,7 +177,7 @@ public class RegistriView extends RegistriDesign implements View {
 			arr.add(printScaricoDS.getItem(itemId).getEntity());
 		}
 		JRBeanArrayDataSource dataSource = new JRBeanArrayDataSource(arr.toArray(new VScaricoStampa[0]), false);
-		String reportName = "ScaricoLS.jasper";
+		String reportName = "Scarico.jasper";
 		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(reportName);
 		StreamResource resource = printReport(resourceAsStream, dataSource);
 		setResource(MYKEY, resource);
