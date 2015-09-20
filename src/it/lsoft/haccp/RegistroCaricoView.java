@@ -73,16 +73,8 @@ public class RegistroCaricoView extends RegistroCaricoDesign implements View {
 
 	private void printAll(Integer rid) {
 		Query query = JPAContainerFactory.createEntityManagerForPersistenceUnit(HaccpUI.PERSISTENCE_UNIT)
-				.createNativeQuery("SELECT haccp.articoli.`DESCRIZIONE` as descrizione,"
-						+ " haccp.articolimagazzino.`LOTTO` as lotto,"
-						+ " haccp.articolimagazzino.`DATASCADENZA` as dataScadenza,"
-						+ " haccp.registri.`DATA` as dataRegistro," + " haccp.articolimagazzino.`ID` as id"
-						+ " FROM haccp.articoli" + " INNER JOIN haccp.articolimagazzino ON "
-						+ " haccp.articolimagazzino.`ARTICOLO_ID` = haccp.articoli.`ID` "
-						+ " INNER JOIN haccp.registri ON "
-						+ " haccp.registri.`ID` = haccp.articolimagazzino.`REGISTROCARICO_ID` "
-						+ "where haccp.articolimagazzino.`REGISTROCARICO_ID`  = "+rid, "Etichette");
-		JRBeanArrayDataSource dataSource = new JRBeanArrayDataSource(query.getResultList().toArray(new Etichette[0]),
+				.createQuery("select q from Etichette q where q.rid = :rid").setParameter("rid", rid);
+		JRBeanArrayDataSource dataSource = new JRBeanArrayDataSource(query.getResultList().toArray(),
 				false);
 		String reportName = "Etichette.jasper";
 		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(reportName);

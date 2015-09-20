@@ -2,12 +2,19 @@ package it.lsoft.haccp.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="v_etichette")
 public class Etichette {
 	private String descrizione;
 	private String lotto;
 	private Date dataScadenza;
 	private Date dataRegistro;
+	@Id
 	private Integer id;
+	private Integer rid;
 	public String getDescrizione() {
 		return descrizione;
 	}
@@ -37,5 +44,11 @@ public class Etichette {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public Integer getRid() {
+		return rid;
+	}
+	public void setRid(Integer rid) {
+		this.rid = rid;
 	}
 }
