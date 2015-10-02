@@ -17,6 +17,7 @@ public class AppRootView extends AppRootDesign implements View, UserHandler {
 	private final FornitoriView fornitoriView;
 	private final RegistriView registriView;
 	private final ArticoliView articoliView;
+	private final GiacenzeView giacenzeView;
 	private final Utenti currentUser;
 
 	public AppRootView(Utenti find) {
@@ -25,6 +26,7 @@ public class AppRootView extends AppRootDesign implements View, UserHandler {
 		fornitoriView = new FornitoriView(this);
 		registriView = new RegistriView(this);
 		articoliView = new ArticoliView(this);
+		giacenzeView = new GiacenzeView(this);
 		Command command = new Command() {
 
 			/**
@@ -44,6 +46,9 @@ public class AppRootView extends AppRootDesign implements View, UserHandler {
 					break;
 				case "Articoli":
 					appContainer.addComponent(articoliView);
+					break;
+				case "Giacenze":
+					appContainer.addComponent(giacenzeView);
 					break;
 				case "Carte Fedeltà":
 					appContainer.addComponent(fidelityCardView);
