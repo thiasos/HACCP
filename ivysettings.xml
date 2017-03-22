@@ -9,6 +9,8 @@
 			<!-- Vaadin Add-on repository -->
 			<ibiblio name="vaadin-addons" usepoms="true" m2compatible="true"
 				root="http://maven.vaadin.com/vaadin-addons" />
+			<ibiblio name="EclipseLink Repo" usepoms="true" m2compatible="true"
+				root="http://www.eclipse.org/downloads/download.php?r=1&amp;nf=1&amp;file=/rt/eclipselink/maven.repo" />
 
 			<!-- Vaadin snapshots repository -->
 			<ibiblio name="vaadin-snapshots" usepoms="true" m2compatible="true"

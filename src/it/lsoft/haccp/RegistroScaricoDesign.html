@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;PAPER_WIDTH&quot;:0,&quot;PAPER_HEIGHT&quot;:0,&quot;PAPER_SCROLL_LEFT&quot;:0,&quot;PAPER_SCROLL_TOP&quot;:0,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;haccp&quot;}">
+ </head> 
+ <body> 
+  <v-vertical-layout size-full="true"> 
+   <v-horizontal-layout> 
+    <v-combo-box caption="Articolo da scaricare" _id="movimento"></v-combo-box> 
+    <v-text-field caption="Codice Articolo da scaricare" _id="idMovimento" :bottom="" :center=""></v-text-field> 
+    <v-button plain-text="" _id="btnAdd" :bottom="" :center="">
+      Aggiungi 
+    </v-button> 
+   </v-horizontal-layout> 
+   <v-table size-full="true" _id="tableMagazzino" :expand=""></v-table> 
+  </v-vertical-layout>  
+ </body>
+</html>

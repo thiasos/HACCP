@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;PAPER_WIDTH&quot;:0,&quot;PAPER_HEIGHT&quot;:0,&quot;PAPER_SCROLL_LEFT&quot;:0,&quot;PAPER_SCROLL_TOP&quot;:0,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;haccp&quot;}">
+ </head> 
+ <body> 
+  <v-vertical-layout size-full="true"> 
+   <v-horizontal-layout width-full="true" _id="toolbar"> 
+    <v-button plain-text="" _id="newButton">
+      Nuovo 
+    </v-button> 
+    <v-button plain-text="" _id="editButton">
+      Modifica 
+    </v-button> 
+    <v-button plain-text="" _id="deleteButton">
+      Elimina 
+    </v-button> 
+    <v-text-field input-prompt="Ricerca per nome" _id="searchField" :expand=""></v-text-field> 
+   </v-horizontal-layout> 
+   <v-table responsive="true" size-full="true" _id="tableFornitori" :expand=""></v-table> 
+   <v-form-layout immediate="true" _id="form"> 
+    <v-text-field caption="Nome" immediate="true" _id="nome"></v-text-field> 
+    <v-text-field caption="Indirizzo" immediate="true" _id="indirizzo"></v-text-field> 
+    <v-text-field caption="Telefono" immediate="true" _id="telefono"></v-text-field> 
+    <v-horizontal-layout> 
+     <v-button plain-text="" _id="btnSave">
+       Salva 
+     </v-button> 
+     <v-button plain-text="" _id="btnAbort">
+       Annulla 
+     </v-button> 
+    </v-horizontal-layout> 
+   </v-form-layout> 
+  </v-vertical-layout>  
+ </body>
+</html>
