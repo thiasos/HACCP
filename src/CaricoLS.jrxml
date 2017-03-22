@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-09-05T20:20:18 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CaricoLS" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="baa49111-9a66-4695-bca1-94c14496275f">
 	<property name="ireport.zoom" value="1.6105100000000008"/>
 	<property name="ireport.x" value="0"/>
@@ -73,12 +71,12 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="66" backcolor="#000000" uuid="ac78c767-f0df-498f-9b3b-9d89962d268b"/>
 				<staticText>
-					<reportElement style="Title" x="0" y="0" width="481" height="66" uuid="f12fc514-3832-47c9-bb75-f2178ed7ef6d"/>
+					<reportElement style="Title" x="0" y="0" width="555" height="66" uuid="f12fc514-3832-47c9-bb75-f2178ed7ef6d"/>
 					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
-					<textElement verticalAlignment="Bottom">
-						<font size="46" isBold="false"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="36" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Capogna e Alfonso Snc]]></text>
+					<text><![CDATA[Nicotera, Servidio e Alfonso Snc]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="SubTitle" x="570" y="10" width="227" height="56" uuid="74f3d036-e5d1-4773-9275-2642030b400f"/>
