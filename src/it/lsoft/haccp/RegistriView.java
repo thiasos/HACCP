@@ -6,15 +6,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.management.RuntimeErrorException;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 
+import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.data.util.filter.Between;
@@ -43,7 +47,9 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRAbstractBeanDataSource;
 import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class RegistriView extends RegistriDesign implements View {
 	private final Calendar calendar = new Calendar();
@@ -154,11 +160,13 @@ public class RegistriView extends RegistriDesign implements View {
 		printCaricoDS.removeAllContainerFilters();
 		printCaricoDS.addContainerFilter(new Between("registriData", startDate, endDate));
 		printCaricoDS.applyFilters();
-		ArrayList<VCaricoStampa> arr = new ArrayList<>();
-		for (Object itemId : printCaricoDS.getItemIds()) {
-			arr.add(printCaricoDS.getItem(itemId).getEntity());
-		}
-		JRBeanArrayDataSource dataSource = new JRBeanArrayDataSource(arr.toArray(new VCaricoStampa[0]), false);
+		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(//
+				printCaricoDS.getItemIds().stream()//
+				.map(t -> printCaricoDS.getItem(t))//
+				.map(t -> t.getEntity())//
+				.filter(t -> startDate.compareTo(t.getRegistriData()) * t.getRegistriData().compareTo(endDate) >= 0)//
+				.sorted((o1, o2) -> o1.getRegistriData().compareTo(o2.getRegistriData()))//
+				.collect(Collectors.toList()),false);
 		String reportName = "CaricoLS.jasper";
 		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(reportName);
 		StreamResource resource = printReport(resourceAsStream, dataSource);
@@ -172,11 +180,13 @@ public class RegistriView extends RegistriDesign implements View {
 		printScaricoDS.removeAllContainerFilters();
 		printScaricoDS.addContainerFilter(new Between("registriData", startDate, endDate));
 		printScaricoDS.applyFilters();
-		ArrayList<VScaricoStampa> arr = new ArrayList<>();
-		for (Object itemId : printScaricoDS.getItemIds()) {
-			arr.add(printScaricoDS.getItem(itemId).getEntity());
-		}
-		JRBeanArrayDataSource dataSource = new JRBeanArrayDataSource(arr.toArray(new VScaricoStampa[0]), false);
+		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(//
+				printScaricoDS.getItemIds().stream()//
+				.map(t->printScaricoDS.getItem(t))//
+				.map(EntityItem::getEntity)//
+				.filter(t -> startDate.compareTo(t.getRegistriData()) * t.getRegistriData().compareTo(endDate) >= 0)//
+				.sorted((o1, o2) -> o1.getRegistriData().compareTo(o2.getRegistriData()))//
+				.collect(Collectors.toList()),false);
 		String reportName = "Scarico.jasper";
 		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(reportName);
 		StreamResource resource = printReport(resourceAsStream, dataSource);
@@ -185,7 +195,7 @@ public class RegistriView extends RegistriDesign implements View {
 		Page.getCurrent().open(rr.getURL(), "new");
 	}
 
-	public static StreamResource printReport(InputStream report, JRBeanArrayDataSource dataSource) {
+	public static StreamResource printReport(InputStream report, JRAbstractBeanDataSource dataSource) {
 		try {
 			final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(report, new HashMap<>(), dataSource);
