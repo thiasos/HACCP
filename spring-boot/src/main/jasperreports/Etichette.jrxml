@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-09-05T14:37:19 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Etichette" pageWidth="252" pageHeight="116" columnWidth="236" leftMargin="8" rightMargin="8" topMargin="8" bottomMargin="8" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="aGFjY3AuYXJ0aWNvbGkgQVMgLDcwLDY5LDIyYzU5MjYxLWZjOTUtNGNlNy05MzEzLTYyMzBjYjdk&#xA;YjlkMDtoYWNjcC5yZWdpc3RyaSBBUyAsMCwyNDMsYmQ1YjAyOWMtNzQyNC00OTA1LTkzNzYtYTQy&#xA;ZDUzNDI1YTIxO2hhY2NwLmFydGljb2xpbWFnYXp6aW5vIEFTICwyNTAsNTIsMmJiNGNmMWEtYjcw&#xA;Yi00MGUyLTliMmItMjRlMmZkZTdiMWNlOw=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Nuovo Data Adapter "/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT haccp.articoli.`DESCRIZIONE` as descrizione,
+	haccp.articolimagazzino.`LOTTO` as lotto,
+	haccp.articolimagazzino.`DATASCADENZA` as dataScadenza,
+	haccp.registri.`DATA` as dataRegistro,
+	haccp.articolimagazzino.`ID` as id
+FROM haccp.articoli
+	INNER JOIN haccp.articolimagazzino ON 
+	 haccp.articolimagazzino.`ARTICOLO_ID` = haccp.articoli.`ID` 
+	INNER JOIN haccp.registri ON 
+	 haccp.registri.`ID` = haccp.articolimagazzino.`REGISTROCARICO_ID`]]>
+	</queryString>
+	<field name="descrizione" class="java.lang.String"/>
+	<field name="lotto" class="java.lang.String"/>
+	<field name="dataScadenza" class="java.sql.Date"/>
+	<field name="dataRegistro" class="java.sql.Date"/>
+	<field name="id" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="96" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="235" height="26" uuid="18a035da-c055-4c51-b327-eee6fccded2d"/>
+				<textFieldExpression><![CDATA[$F{descrizione}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="40" width="116" height="20" uuid="57a4cb8b-4222-4cd3-8a86-57b82941a120"/>
+				<textFieldExpression><![CDATA[$F{lotto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="175" y="40" width="60" height="20" uuid="4c9df799-9757-41d8-a496-f125e5b682b4"/>
+				<textFieldExpression><![CDATA[$F{dataScadenza}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="116" y="40" width="59" height="20" uuid="1f1d2a0a-28cb-495c-b9bd-5493628d39e1">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{dataRegistro}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="0" y="60" width="235" height="35" uuid="889ab42a-41e7-4c84-885c-32c69a69b05c">
+					<property name="com.jaspersoft.studio.unit.barWidth" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.barHeight" value="cm"/>
+				</reportElement>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="3of9" drawText="true" checksumRequired="false" barHeight="56">
+					<jr:codeExpression><![CDATA[$F{id}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<staticText>
+				<reportElement x="0" y="27" width="116" height="13" uuid="156c6c06-d12c-4d73-9b78-44fcaf4dc20c">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<text><![CDATA[Lotto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="27" width="58" height="13" uuid="97a490bb-098e-433d-8d86-5383757702ad"/>
+				<text><![CDATA[Acquisto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="27" width="60" height="13" uuid="1598f528-7d7c-4bdd-8f49-cd090775a2ad"/>
+				<text><![CDATA[Scadenza]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

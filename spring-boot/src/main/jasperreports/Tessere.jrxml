@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-08-30T12:06:28 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tessere" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="241" columnSpacing="56" leftMargin="28" rightMargin="28" topMargin="28" bottomMargin="28" uuid="34c7cca3-bc4d-4d73-bbc4-d3061d36abdf">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="HACCP"/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<queryString>
+		<![CDATA[select * from  "PUBLIC"."CARTEFEDELTA"]]>
+	</queryString>
+	<field name="barcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="156" splitType="Stretch">
+			<componentElement>
+				<reportElement x="6" y="62" width="224" height="70" uuid="6031f39e-8207-45b8-a81d-01e962e45f4e">
+					<property name="com.jaspersoft.studio.unit.barHeight" value="cm"/>
+				</reportElement>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="3of9" drawText="true" checksumRequired="false" barHeight="85">
+					<jr:codeExpression><![CDATA[$F{barcode}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<rectangle radius="15">
+				<reportElement mode="Transparent" x="0" y="0" width="241" height="138" uuid="916bf9b5-d02d-46ae-ac34-b33d0fb29764"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="100" y="10" width="30" height="20" uuid="5c2cdf55-9af6-4cb8-a20f-e777738e2bc5"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="10" width="94" height="20" uuid="4b7979ac-bba3-47f5-9b77-024a25a35430"/>
+				<textElement textAlignment="Right">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[Numero Tessera:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="10" width="30" height="20" uuid="7ea0cb5d-8cc9-4063-b54a-9d8c2401e897"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="164" y="10" width="36" height="20" uuid="44d6dc99-172b-45a5-9846-f241622e5435"/>
+				<textElement textAlignment="Right">
+					<font fontName="Monospaced"/>
+				</textElement>
+				<text><![CDATA[PIN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="30" width="224" height="32" uuid="d481a31b-f0db-4510-b9e8-bb9b67822beb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="FontLeroyBrown" size="26"/>
+				</textElement>
+				<text><![CDATA[Piadineria Tienti in Pie']]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
