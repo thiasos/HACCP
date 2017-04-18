@@ -1,0 +1,25 @@
+{
+  "name": "egon-client",
+  "authors": [
+    "Bruno Lombardi <b.lombardi@mclink.eu>"
+  ],
+  "directory": "src/main/resources/public/js/bower_components",
+  "description": "EgonClient",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material-data-table": "^0.10.10",
+    "jquery-ui": "^1.12.1",
+    "textAngular": "^1.5.16",
+    "lf-ng-md-file-input": "^1.5.1"
+  }
+}
