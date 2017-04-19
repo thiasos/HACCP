@@ -18,6 +18,10 @@
   ],
   "dependencies": {
     "angular-material-data-table": "^0.10.10",
-    "jquery-ui": "^1.12.1"
+    "jquery-ui": "^1.12.1",
+    "material-calendar": "^0.2.14"
+  },
+  "resolutions": {
+    "angular-material": "^1.0.0"
   }
 }
