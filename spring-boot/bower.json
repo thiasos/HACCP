@@ -18,8 +18,6 @@
   ],
   "dependencies": {
     "angular-material-data-table": "^0.10.10",
-    "jquery-ui": "^1.12.1",
-    "textAngular": "^1.5.16",
-    "lf-ng-md-file-input": "^1.5.1"
+    "jquery-ui": "^1.12.1"
   }
 }
