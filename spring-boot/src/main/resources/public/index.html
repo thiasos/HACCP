@@ -1,0 +1,125 @@
+<html>
+<head>
+<!-- node -->
+<!-- require('wiredep')({ src: 'src/main/resources/public/index.html' }); -->
+<!-- bower:css -->
+<link rel="stylesheet"
+	href="js/bower_components/angular-material/angular-material.css" />
+<link rel="stylesheet"
+	href="js/bower_components/angular-material-data-table/dist/md-data-table.css" />
+<!-- endbower -->
+<link rel="stylesheet" href="css/haccp.css" />
+</head>
+<body ng-app="MyApp" ng-cloak>
+	<!-- bower:js -->
+	<script src="js/bower_components/angular/angular.js"></script>
+	<script src="js/bower_components/angular-animate/angular-animate.js"></script>
+	<script src="js/bower_components/angular-aria/angular-aria.js"></script>
+	<script src="js/bower_components/angular-messages/angular-messages.js"></script>
+	<script src="js/bower_components/angular-material/angular-material.js"></script>
+	<script
+		src="js/bower_components/angular-material-data-table/dist/md-data-table.js"></script>
+	<script src="js/bower_components/jquery/dist/jquery.js"></script>
+	<script src="js/bower_components/jquery-ui/jquery-ui.js"></script>
+	<script src="js/bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script
+		src="js/bower_components/material-calendar/dist/angular-material-calendar.js"></script>
+	<script src="js/bower_components/angular-route/angular-route.js"></script>
+	<!-- endbower -->
+
+	<script src="js/controller.js"></script>
+	<script type="text/javascript">
+		/**
+		 * You must include the dependency on 'ngMaterial' 
+		 */
+		angular.module('BlankApp', [ 'ngMaterial' ]);
+	</script>
+	<div ng-cloak="" class="tabsdemoDynamicHeight"
+		ng-controller="HaccpCtrl as ctrl">
+		<md-content> <md-tabs md-dynamic-height=""
+			md-border-bottom=""> <md-tab label="fornitori"> <md-content
+			class="md-padding"> <md-table-container>
+		<table md-table md-progress="ctrl.provider.promise">
+			<thead md-head>
+				<tr md-row>
+					<th md-column><span>ID</span></th>
+					<th md-column><span>Nome</span></th>
+					<th md-column>Indirizzo</th>
+					<th md-column>Telefono</th>
+				</tr>
+			</thead>
+			<tbody md-body>
+				<!-- 						<tr md-row ng-repeat="item in ctrl.aCoverageResult._embedded.alperiaCoverages"> -->
+				<tr md-row ng-repeat="item in ctrl.provider.result._embedded.fornitoris">
+					<td md-cell>{{item.id}}</td>
+					<td md-cell>{{item.nome}}</td>
+					<td md-cell>{{item.indirizzo }}</td>
+					<td md-cell>{{item.telefono}}</td>
+				</tr>
+			</tbody>
+		</table>
+		</md-table-container>
+		<div layout-gt-sm="row">
+			<md-table-pagination md-limit="ctrl.provider.result.page.size"
+				md-limit-options="[10]" md-page="ctrl.provider.result.page.number "
+				md-total="{{ctrl.provider.result.page.totalElements}}"
+				md-on-paginate="ctrl.listProviders" md-page-select></md-table-pagination>
+		</div>
+		</md-content> </md-tab> <md-tab label="articoli"> <md-content class="md-padding">
+		<h1 class="md-display-2">Tab Two</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+			venenatis ante augue. Phasellus volutpat neque ac dui mattis
+			vulputate. Etiam consequat aliquam cursus. In sodales pretium
+			ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+			feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in
+			ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a
+			tellus. Vivamus convallis sodales ante varius gravida. Curabitur a
+			purus vel augue ultrices ultricies id a nisl. Nullam malesuada
+			consequat diam, a facilisis tortor volutpat et. Sed urna dolor,
+			aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus,
+			pulvinar at interdum quis, vehicula sed odio. Phasellus in enim
+			venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum
+			neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor
+			purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec
+			luctus mauris semper.</p>
+		<p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra
+			quam, at semper massa orci nec magna. Donec posuere nec sapien sed
+			laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor
+			tortor. Vivamus faucibus egestas enim, at convallis diam pulvinar
+			vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra
+			sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis
+			convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl
+			consectetur, rhoncus sapien sit amet, tempus sapien.</p>
+		<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet
+			interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue
+			risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at
+			posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo
+			volutpat non ac est. Praesent ligula diam, congue eu enim
+			scelerisque, finibus commodo lectus.</p>
+		</md-content> </md-tab> <md-tab label="entrata merci"> <md-content
+			class="md-padding">
+		<h1 class="md-display-2">Tab Three</h1>
+		<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet
+			interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue
+			risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at
+			posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo
+			volutpat non ac est. Praesent ligula diam, congue eu enim
+			scelerisque, finibus commodo lectus.</p>
+		</md-content> </md-tab> <md-tab label="uscita merci"> <md-content
+			class="md-padding">
+		<h1 class="md-display-2">Tab Three</h1>
+		<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet
+			interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue
+			risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at
+			posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo
+			volutpat non ac est. Praesent ligula diam, congue eu enim
+			scelerisque, finibus commodo lectus.</p>
+		</md-content> </md-tab> </md-tabs> </md-content>
+	</div>
+
+	<!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+</body>
+</html>

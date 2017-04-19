@@ -19,7 +19,11 @@
   "dependencies": {
     "angular-material-data-table": "^0.10.10",
     "jquery-ui": "^1.12.1",
-    "material-calendar": "^0.2.14"
+    "material-calendar": "^0.2.14",
+    "angular-route": "^1.6.4",
+    "angular-aria": "^1.6.4",
+    "angular-messages": "^1.6.4",
+    "svg-assets-cache.js": "svg-assets-cache#*"
   },
   "resolutions": {
     "angular-material": "^1.0.0"
