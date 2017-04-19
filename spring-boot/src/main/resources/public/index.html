@@ -29,9 +29,6 @@
 
 	<script src="js/controller.js"></script>
 	<script type="text/javascript">
-		/**
-		 * You must include the dependency on 'ngMaterial' 
-		 */
 		angular.module('BlankApp', [ 'ngMaterial' ]);
 	</script>
 	<div ng-cloak="" class="tabsdemoDynamicHeight"
@@ -68,7 +65,34 @@
 				md-on-paginate="ctrl.nextProviders" md-page-select></md-table-pagination>
 		</div>
 		</md-content> </md-tab> <md-tab label="articoli"> <md-content class="md-padding">
-
+<md-table-container>
+		<table md-table md-progress="ctrl.article.promise">
+			<thead md-head md-order="ctrl.article.order"
+				md-on-reorder="ctrl.sortArticles">
+				<tr md-row>
+					<th md-column md-order-by="id"><span>ID</span></th>
+					<th md-column md-order-by="ean"><span>EAN</span></th>
+					<th md-column md-order-by="descrizione">Descrizione</th>
+					<th md-column  >Fornitore</th>
+				</tr>
+			</thead>
+			<tbody md-body>
+				<tr md-row
+					ng-repeat="item in ctrl.article.result._embedded.articolis">
+					<td md-cell>{{item.id}}</td>
+					<td md-cell>{{item.ean}}</td>
+					<td md-cell>{{item.descrizione }}</td>
+					<td md-cell>{{item.fornitore }}</td>
+				</tr>
+			</tbody>
+		</table>
+		</md-table-container>
+		<div layout-gt-sm="row">
+			<md-table-pagination md-limit="ctrl.article.result.page.size"
+				md-limit-options="[10]" md-page="ctrl.article.result.page.number "
+				md-total="{{ctrl.article.result.page.totalElements}}"
+				md-on-paginate="ctrl.nextArticles" md-page-select></md-table-pagination>
+		</div>
 		</md-content> </md-tab> <md-tab label="entrata merci"> <md-content
 			class="md-padding"> </md-content> </md-tab> </md-tabs> </md-content>
 	</div>

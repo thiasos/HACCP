@@ -20,7 +20,7 @@ public class Articoli implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	private String ean;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="IDFORNITORE")
 	private Fornitori fornitore;
 	private String descrizione;
