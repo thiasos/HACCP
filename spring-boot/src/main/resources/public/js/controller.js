@@ -63,6 +63,7 @@ function crudService($http, $log, $q) {
 }
 function HaccpCtrl($timeout, $http, $q, $log, crudService, $scope,
 		registryService) {
+	$scope.selected = [];
 	var self = this;
 	self.sortProviders = sortProviders;
 	self.nextProviders = nextProviders;
@@ -120,6 +121,8 @@ function HaccpCtrl($timeout, $http, $q, $log, crudService, $scope,
 				.listEntry((monthIndex + 1) + '/' + day + '/' + year);
 		self.currDayInfo.load.promise.then(function(result) {
 			self.currDayInfo.load.result = result;
+			self.currDayInfo.load.selected = [] ;
+			
 		});
 
 	}

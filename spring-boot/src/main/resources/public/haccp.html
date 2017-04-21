@@ -108,7 +108,7 @@
 			style="border: 5px solid orange; width: 550px; height: 375px"
 			layout="row">
 			<md-table-container>
-			<table md-table md-progress=" ctrl.currDayInfo.load.promise">
+			<table md-row-select ng-model="selected"  md-table md-progress=" ctrl.currDayInfo.load.promise">
 				<thead md-head>
 					<tr md-row>
 						<th md-column  ><span>ID</span></th>
@@ -118,7 +118,7 @@
 					</tr>
 				</thead>
 				<tbody md-body>
-					<tr md-row
+					<tr md-row md-auto-select  md-select="item" md-select-id="id"
 						ng-repeat="item in ctrl.currDayInfo.load.result._embedded.registroCaricoes">
 						<td md-cell>{{item.id}}</td>
 						<td md-cell>{{item.data}}</td>
