@@ -1,8 +1,36 @@
 'use strict';
-angular.module('MyApp', [ 'ngMaterial', 'ngMessages', 'md.data.table' ])
+angular.module('MyApp',
+		[ 'ngMaterial', 'ngMessages', 'md.data.table', 'materialCalendar' ])
 		.controller('HaccpCtrl', HaccpCtrl)//
 		.factory('crudService', crudService)//
+		.factory('registryService', registryService)//
 ;
+function registryService($http, $log, $q) {
+	return {
+		countEntry : function(date, registryType) {
+			var deferred = $q.defer();
+			$http.get('/registroCaricoes/search/countByData?data=' + date)
+					.then(function(result) {
+						deferred.resolve(result.data);
+					}, function(msg, code) {
+						deferred.reject(msg);
+						$log.error(msg, code);
+					});
+			return deferred.promise;
+		},
+		listEntry : function(date, registryType) {
+			var deferred = $q.defer();
+			$http.get('/registroCaricoes/search/findByData?data=' + date).then(
+					function(result) {
+						deferred.resolve(result.data);
+					}, function(msg, code) {
+						deferred.reject(msg);
+						$log.error(msg, code);
+					});
+			return deferred.promise;
+		}
+	}
+}
 function crudService($http, $log, $q) {
 	return {
 		list : function(servicename, page, size, sortColumns, sortOrder) {
@@ -33,7 +61,8 @@ function crudService($http, $log, $q) {
 
 	}
 }
-function HaccpCtrl($timeout, $http, $q, $log, crudService, $scope) {
+function HaccpCtrl($timeout, $http, $q, $log, crudService, $scope,
+		registryService) {
 	var self = this;
 	self.sortProviders = sortProviders;
 	self.nextProviders = nextProviders;
@@ -41,8 +70,12 @@ function HaccpCtrl($timeout, $http, $q, $log, crudService, $scope) {
 	self.list = list;
 	self.sortArticles = sortArticles;
 	self.nextArticles = nextArticles;
+	self.setDayContent = setDayContent;
+	self.listLoadRegistryByDate = listLoadRegistryByDate;
 	self.article = new Object();
-	
+	self.currDayInfo = new Object();
+	self.currDayInfo.load = new Object();
+
 	function sortProviders(sortColumns) {
 		self.list('fornitoris', self.provider,
 				self.provider.result.page.number,
@@ -71,7 +104,26 @@ function HaccpCtrl($timeout, $http, $q, $log, crudService, $scope) {
 			destObj.result.page.number = destObj.result.page.number + 1;
 		});
 	}
+	function setDayContent(date) {
+		var day = date.getDate();
+		var monthIndex = date.getMonth();
+		var year = date.getFullYear();
+		return registryService.countEntry((monthIndex + 1) + '/' + day + '/'
+				+ year);
 
+	}
+	function listLoadRegistryByDate(date) {
+		var day = date.getDate();
+		var monthIndex = date.getMonth();
+		var year = date.getFullYear();
+		self.currDayInfo.load.promise = registryService
+				.listEntry((monthIndex + 1) + '/' + day + '/' + year);
+		self.currDayInfo.load.promise.then(function(result) {
+			self.currDayInfo.load.result = result;
+		});
+
+	}
+	;
 	self.article.order = 'id';
 	nextProviders(1, 10);
 	self.provider.order = 'id';
