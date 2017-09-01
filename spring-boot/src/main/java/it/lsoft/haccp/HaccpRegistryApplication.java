@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HaccpRegistryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HaccpRegistryApplication.class, args);
+		SpringApplication.run(new Object[] { HaccpRegistryApplication.class, MailService.class }, args);
 	}
 }
